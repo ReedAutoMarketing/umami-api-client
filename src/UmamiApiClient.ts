@@ -647,21 +647,21 @@ export class UmamiApiClient {
           },
         ) => this.createReport(data),
       },
-      {
-        path: /^reports\/funnel$/,
-        post: async (
-          [],
-          data: {
-            websiteId: string;
-            urls: string[];
-            window: number;
-            dateRange: {
-              startDate: string;
-              endDate: string;
-            };
-          },
-        ) => this.runFunnelReport(data),
-      },
+		{
+		  path: /^reports\\/funnel$/,
+		  post: async (
+			[],
+			data: {
+			  websiteId: string;
+			  steps: { type: string; value: string; }[];
+			  window: number;
+			  dateRange: {
+				startDate: string;
+				endDate: string;
+			  };
+			},
+		  ) => this.runFunnelReport(data),
+		},
       {
         path: /^reports\/insight$/,
         post: async (
@@ -828,7 +828,7 @@ export class UmamiApiClient {
             browser?: string | undefined;
             device?: string | undefined;
             country?: string | undefined;
-            region: string;
+            region?: string;
             city?: string | undefined;
           },
         ) => this.getWebsitePageviews(id, data),
